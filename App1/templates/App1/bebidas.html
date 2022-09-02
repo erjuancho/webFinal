@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BEBIDAS</title>
-</head>
-<body>
-    <h1>Pagina de Bebidas</h1>
-</body>
-</html>
+{% extends "App1/padre.html" %}
+
+{% load static %}
+
+{% block titulo_de_pagina %}
+<h1 class="mx-auto my-0 text-uppercase">Bebidas</h1>
+{% endblock %}
+
+{% block subtitulo_de_pagina %}
+<h2 class="text-white-50 mx-auto mt-2 mb-5">Estas en la pagina de Bebidas</h2>
+{% endblock %}

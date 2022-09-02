@@ -37,7 +37,7 @@ def galletitas(request):
     return HttpResponse(documento)
 
 def bebidas(request):
-    producto=Bebidas(codigo=201, marca="BebidaMarca1" , sabor="Cola", precio=100)
+    producto=Bebidas(codigo=301, marca="BebidaMarca1" , sabor="Cola", precio=100)
     producto.save()
     plantilla=loader.get_template('template2.html')
     diccionario={'codigo': producto.codigo, 'marca': producto.marca, 'tipo': producto.sabor , "precio": producto.precio}
