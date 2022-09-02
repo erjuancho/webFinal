@@ -64,8 +64,3 @@ def formularioProducto(request):
             producto.save()
             return render(request, "App1/inicio.html")
     return render(request, "App1/formularioProducto.html")
-
-        # <p>Codigo: <input type="number", name="codigo"></p>
-        # <p>Marca: <input type="text", name="marca"></p>
-        # <p>Sabor: <input type="text", name="sabor"></p>
-        # <p>Precio: <input type="number", name="precio"></p>
