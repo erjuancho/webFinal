@@ -19,13 +19,15 @@
 {% block espacio_formulario %}
 <a class="btn btn-primary">
     <form action="{% url 'formularioProducto' %}", method="POST">{% csrf_token %}
-        <p>Codigo: <input type="number", name="codigo"></p>
-        <p>Marca: <input type="text", name="marca"></p>
-        <p>Sabor: <input type="text", name="sabor"></p>
-        <p>Precio: <input type="number", name="precio"></p>
-
+        <div class="d-flex justify-content-center">
+            <div class="text-center">
+                <p>Codigo: <input type="number", name="codigo"></p>
+                <p>Marca: <input type="text", name="marca"></p>
+                <p>Tipo: <input type="text", name="tipo"></p>
+                <p>Precio: <input type="number", name="precio"></p>
+            </div>
+        </div>
         <input type="submit" name="Enviar">
-
     </form>
 </a>
 {% endblock %}
