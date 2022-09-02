@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Bebidas, Galletitas, Lacteos
 from django.template import Context, Template, loader
+from App1.forms import FormularioProductoApi
 
 
 
@@ -32,7 +33,7 @@ def galletitas(request):
     producto=Galletitas(codigo=201, marca="GalletitaMarca1" , sabor="Chocolate", precio=100)
     producto.save()
     plantilla=loader.get_template('template2.html')
-    diccionario={'codigo': producto.codigo, 'marca': producto.marca, 'tipo': producto.sabor , "precio": producto.precio}
+    diccionario={'codigo': producto.codigo, 'marca': producto.marca, 'tipo': producto.tipo , "precio": producto.precio}
     documento=plantilla.render(diccionario)
     return HttpResponse(documento)
 
@@ -40,7 +41,7 @@ def bebidas(request):
     producto=Bebidas(codigo=301, marca="BebidaMarca1" , sabor="Cola", precio=100)
     producto.save()
     plantilla=loader.get_template('template2.html')
-    diccionario={'codigo': producto.codigo, 'marca': producto.marca, 'tipo': producto.sabor , "precio": producto.precio}
+    diccionario={'codigo': producto.codigo, 'marca': producto.marca, 'tipo': producto.tipo , "precio": producto.precio}
     documento=plantilla.render(diccionario)
     return HttpResponse(documento)
 
@@ -56,11 +57,42 @@ def formularioProducto(request):
             producto.save()
             return render(request, "App1/inicio.html")
         if int(str(codigo)[:1])==2:
-            producto=Galletitas(codigo=codigo, marca=marca , sabor=tipo, precio=precio)
+            producto=Galletitas(codigo=codigo, marca=marca , tipo=tipo, precio=precio)
             producto.save()
             return render(request, "App1/inicio.html")
         if int(str(codigo)[:1])==3:
-            producto=Bebidas(codigo=codigo, marca=marca , sabor=tipo, precio=precio)
+            producto=Bebidas(codigo=codigo, marca=marca , tipo=tipo, precio=precio)
             producto.save()
             return render(request, "App1/inicio.html")
     return render(request, "App1/formularioProducto.html")
+
+
+def formularioProductoApi(request):
+
+    if request.method=="POST":
+        formulario=FormularioProductoApi(request.POST)
+        print(formulario)
+        if formulario.is_valid():
+            data=formulario.cleaned_data
+            codigo=data.get("codigo")
+            marca=data.get("marca")
+            tipo=data.get("tipo")
+            precio=data.get("precio")
+            if int(str(codigo)[:1])==1:
+                producto=Lacteos(codigo=codigo, marca=marca , tipo=tipo, precio=precio)
+                producto.save()
+                return render(request, "App1/inicio.html", {"mensaje": "Producto creado con exito"})
+            if int(str(codigo)[:1])==2:
+                producto=Galletitas(codigo=codigo, marca=marca , tipo=tipo, precio=precio)
+                producto.save()
+                return render(request, "App1/inicio.html", {"mensaje": "Producto creado con exito"})
+            if int(str(codigo)[:1])==3:
+                producto=Bebidas(codigo=codigo, marca=marca , tipo=tipo, precio=precio)
+                producto.save()
+                return render(request, "App1/inicio.html", {"mensaje": "Producto creado con exito"})
+        else:
+            return render(request, "App1/formularioProductoApi.html", {"mensaje": "Error al cargar producto"})
+
+    else:
+         formulario=FormularioProductoApi()
+         return render(request, "App1/formularioProductoApi.html", {"formulario": formulario})

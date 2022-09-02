@@ -16,19 +16,19 @@
 <h2 class="text-white-50 mx-auto mt-2 mb-5">Ingresa un producto</h2>
 {% endblock %}
 
-
 {% block espacio_formulario %}
 <h2 class="text-white-50 mx-auto mt-2 mb-5">
-    <form action="{% url 'formularioProducto' %}", method="POST">{% csrf_token %}
+    <form action="{% url 'formularioProductoApi' %}", method="POST">{% csrf_token %}
         <div class="d-flex justify-content-center">
             <div class="text-center">
-                <p>Codigo: <input type="number", name="codigo"></p>
-                <p>Marca: <input type="text", name="marca"></p>
-                <p>Tipo: <input type="text", name="tipo"></p>
-                <p>Precio: <input type="number", name="precio"></p>
+                <table>
+
+                    {{ formulario.as_table }}
+
+                </table>
             </div>
-        </div>
+        </div>    
         <input type="submit" name="Enviar">
-    </form>
 </h2>
 {% endblock %}
+
