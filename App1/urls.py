@@ -6,4 +6,5 @@ urlpatterns = [
     path('lacteos/', iniciolacteos, name='iniciolacteos'),
     path('galletitas/', iniciogalletitas, name='iniciogalletitas'),
     path('bebidas/', iniciobebidas, name='iniciobebidas'),
+    path('formularioProducto/', formularioProducto, name='formularioProducto'),
 ]

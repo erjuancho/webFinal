@@ -43,3 +43,29 @@ def bebidas(request):
     diccionario={'codigo': producto.codigo, 'marca': producto.marca, 'tipo': producto.sabor , "precio": producto.precio}
     documento=plantilla.render(diccionario)
     return HttpResponse(documento)
+
+def formularioProducto(request):
+
+    if request.method=="POST":
+        codigo=request.POST.get("codigo")
+        marca=request.POST.get("marca")
+        sabor=request.POST.get("sabor")
+        precio=request.POST.get("precio")
+        if int(str(codigo)[:1])==1:
+            producto=Lacteos(codigo=codigo, marca=marca , tipo=sabor, precio=precio)
+            producto.save()
+            return render(request, "App1/inicio.html")
+        if int(str(codigo)[:1])==2:
+            producto=Galletitas(codigo=codigo, marca=marca , sabor=sabor, precio=precio)
+            producto.save()
+            return render(request, "App1/inicio.html")
+        if int(str(codigo)[:1])==3:
+            producto=Bebidas(codigo=codigo, marca=marca , sabor=sabor, precio=precio)
+            producto.save()
+            return render(request, "App1/inicio.html")
+    return render(request, "App1/formularioProducto.html")
+
+        # <p>Codigo: <input type="number", name="codigo"></p>
+        # <p>Marca: <input type="text", name="marca"></p>
+        # <p>Sabor: <input type="text", name="sabor"></p>
+        # <p>Precio: <input type="number", name="precio"></p>

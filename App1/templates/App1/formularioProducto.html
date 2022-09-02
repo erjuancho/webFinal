@@ -15,6 +15,17 @@
 <h2 class="text-white-50 mx-auto mt-2 mb-5">Estas en la pagina de inicio</h2>
 {% endblock %}
 
+
 {% block espacio_formulario %}
-<a class="btn btn-primary" href="{% url 'formularioProducto' %}">Agrega producto</a>
+<a class="btn btn-primary">
+    <form action="{% url 'formularioProducto' %}", method="POST">{% csrf_token %}
+        <p>Codigo: <input type="number", name="codigo"></p>
+        <p>Marca: <input type="text", name="marca"></p>
+        <p>Sabor: <input type="text", name="sabor"></p>
+        <p>Precio: <input type="number", name="precio"></p>
+
+        <input type="submit" name="Enviar">
+
+    </form>
+</a>
 {% endblock %}
