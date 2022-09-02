@@ -21,7 +21,6 @@ def iniciobebidas(request):
 
 
 def lacteos(request):
-
     producto=Lacteos(codigo=101, marca="LechaMarca1" , tipo="Descremada", precio=100)
     producto.save()
     plantilla=loader.get_template('template1.html')
@@ -30,7 +29,6 @@ def lacteos(request):
     return HttpResponse(documento)
 
 def galletitas(request):
-
     producto=Galletitas(codigo=201, marca="GalletitaMarca1" , sabor="Chocolate", precio=100)
     producto.save()
     plantilla=loader.get_template('template2.html')
@@ -39,7 +37,6 @@ def galletitas(request):
     return HttpResponse(documento)
 
 def bebidas(request):
-
     producto=Bebidas(codigo=201, marca="BebidaMarca1" , sabor="Cola", precio=100)
     producto.save()
     plantilla=loader.get_template('template2.html')
