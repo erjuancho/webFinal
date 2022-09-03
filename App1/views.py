@@ -71,7 +71,6 @@ def formularioProductoApi(request):
 
     if request.method=="POST":
         formulario=FormularioProductoApi(request.POST)
-        print(formulario)
         if formulario.is_valid():
             data=formulario.cleaned_data
             codigo=data.get("codigo")
