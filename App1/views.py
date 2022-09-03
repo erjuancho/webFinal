@@ -1,3 +1,4 @@
+from itertools import product
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Bebidas, Galletitas, Lacteos
@@ -95,3 +96,18 @@ def formularioProductoApi(request):
     else:
          formulario=FormularioProductoApi()
          return render(request, "App1/formularioProductoApi.html", {"formulario": formulario})
+
+def busquedaProducto(request):
+    return render(request, "App1/busquedaProducto.html")
+
+def buscar(request):
+    producto=request.GET.get("codigo")
+    if int(str(producto)[:1])==1:
+        lacteos=Lacteos.objects.filter(codigo=producto)
+        return render(request, "App1/resultadoBusqueda.html", {"productos":lacteos})
+    if int(str(producto)[:1])==2:
+        galletitas=Galletitas.objects.filter(codigo=producto)
+        return render(request, "App1/resultadoBusqueda.html", {"productos":galletitas})
+    if int(str(producto)[:1])==3:
+        bebidas=Bebidas.objects.filter(codigo=producto)
+        return render(request, "App1/resultadoBusqueda.html", {"productos":bebidas})
