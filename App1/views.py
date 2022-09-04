@@ -65,7 +65,7 @@ def formularioProducto(request):
             producto=Bebidas(codigo=codigo, marca=marca , tipo=tipo, precio=precio)
             producto.save()
             return render(request, "App1/inicio.html")
-    return render(request, "App1/formularioProducto.html")
+    return render(request, "App1/formularioError.html")
 
 
 def formularioProductoApi(request):
@@ -90,12 +90,13 @@ def formularioProductoApi(request):
                 producto=Bebidas(codigo=codigo, marca=marca , tipo=tipo, precio=precio)
                 producto.save()
                 return render(request, "App1/inicio.html", {"mensaje": "Producto creado con exito"})
+            return render(request, "App1/formularioError.html")
         else:
-            return render(request, "App1/formularioProductoApi.html", {"mensaje": "Error al cargar producto"})
-
+            return render(request, "App1/formularioError.html")
     else:
          formulario=FormularioProductoApi()
          return render(request, "App1/formularioProductoApi.html", {"formulario": formulario})
+
 
 def busquedaProducto(request):
     return render(request, "App1/busquedaProducto.html")
@@ -111,3 +112,4 @@ def buscar(request):
     if int(str(producto)[:1])==3:
         bebidas=Bebidas.objects.filter(codigo=producto)
         return render(request, "App1/resultadoBusqueda.html", {"productos":bebidas})
+    return render(request, "App1/formularioError.html")
