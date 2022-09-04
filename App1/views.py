@@ -65,7 +65,8 @@ def formularioProducto(request):
             producto=Bebidas(codigo=codigo, marca=marca , tipo=tipo, precio=precio)
             producto.save()
             return render(request, "App1/inicio.html")
-    return render(request, "App1/formularioError.html")
+        return render(request, "App1/formularioError.html")
+    return render(request, "App1/formularioProducto.html")
 
 
 def formularioProductoApi(request):
