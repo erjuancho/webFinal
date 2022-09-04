@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block boton_de_registro %}
-<li class="nav-item"><a class="nav-link" href="#signup">Registrate</a></li>
+<li class="nav-item"><a class="nav-link">Registrate</a></li>
 {% endblock %}
 
 {% block titulo_de_pagina %}
@@ -17,7 +17,7 @@
 
 {% block espacio_formulario %}
 <a class="btn btn-primary" href="{% url 'formularioProducto' %}">Agrega producto (formulario manual)</a>
-<a class="btn btn-primary" href="{% url 'formularioProductoApi' %}">Agrega producto (Formulario Django</a>
+<a class="btn btn-primary" href="{% url 'formularioProductoApi' %}">Agrega producto (Formulario Django)</a>
 <a class="btn btn-primary" href="{% url 'busquedaProducto' %}">Buscar producto</a>
 
 <h2 class="text-white-50 mx-auto mt-2 mb-5"> {{ mensaje }}</h2>
