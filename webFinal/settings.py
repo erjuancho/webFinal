@@ -55,7 +55,7 @@ ROOT_URLCONF = 'webFinal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["C:/Users/erjua/OneDrive/Documentos/gitRepos/webEntregaFinal/webFinal/webFinal/templates"],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
