@@ -6,3 +6,4 @@ class FormularioProductoApi(forms.Form):
     marca=forms.CharField(max_length=50)
     tipo=forms.CharField(max_length=50)
     precio=forms.IntegerField()
+    cantidad=forms.IntegerField()

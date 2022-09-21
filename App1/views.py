@@ -29,16 +29,17 @@ def formularioProducto(request):
         marca=request.POST.get("marca")
         tipo=request.POST.get("tipo")
         precio=request.POST.get("precio")
+        cantidad=request.POST.get("cantidad")
         if int(str(codigo)[:1])==1:
-            producto=Lacteos(codigo=codigo, marca=marca , tipo=tipo, precio=precio)
+            producto=Lacteos(codigo=codigo, marca=marca , tipo=tipo, precio=precio, cantidad=cantidad)
             producto.save()
             return render(request, "App1/formularioExito.html")
         if int(str(codigo)[:1])==2:
-            producto=Galletitas(codigo=codigo, marca=marca , tipo=tipo, precio=precio)
+            producto=Galletitas(codigo=codigo, marca=marca , tipo=tipo, precio=precio, cantidad=cantidad)
             producto.save()
             return render(request, "App1/formularioExito.html")
         if int(str(codigo)[:1])==3:
-            producto=Bebidas(codigo=codigo, marca=marca , tipo=tipo, precio=precio)
+            producto=Bebidas(codigo=codigo, marca=marca , tipo=tipo, precio=precio, cantidad=cantidad)
             producto.save()
             return render(request, "App1/formularioExito.html")
         return render(request, "App1/formularioError.html")
@@ -55,16 +56,17 @@ def formularioProductoApi(request):
             marca=data.get("marca")
             tipo=data.get("tipo")
             precio=data.get("precio")
+            cantidad=data.get("cantidad")
             if int(str(codigo)[:1])==1:
-                producto=Lacteos(codigo=codigo, marca=marca , tipo=tipo, precio=precio)
+                producto=Lacteos(codigo=codigo, marca=marca , tipo=tipo, precio=precio, cantidad=cantidad)
                 producto.save()
                 return render(request, "App1/formularioExito.html")
             if int(str(codigo)[:1])==2:
-                producto=Galletitas(codigo=codigo, marca=marca , tipo=tipo, precio=precio)
+                producto=Galletitas(codigo=codigo, marca=marca , tipo=tipo, precio=precio, cantidad=cantidad)
                 producto.save()
                 return render(request, "App1/formularioExito.html")
             if int(str(codigo)[:1])==3:
-                producto=Bebidas(codigo=codigo, marca=marca , tipo=tipo, precio=precio)
+                producto=Bebidas(codigo=codigo, marca=marca , tipo=tipo, precio=precio, cantidad=cantidad)
                 producto.save()
                 return render(request, "App1/formularioExito.html")
             return render(request, "App1/formularioError.html")
@@ -90,3 +92,4 @@ def buscar(request):
         bebidas=Bebidas.objects.filter(codigo=producto)
         return render(request, "App1/resultadoBusqueda.html", {"productos":bebidas})
     return render(request, "App1/formularioError.html")
+
