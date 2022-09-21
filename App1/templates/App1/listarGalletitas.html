@@ -2,9 +2,8 @@
 
 {% load static %}
 
-
 {% block titulo_de_pagina %}
-<h1 class="mx-auto my-0 text-uppercase">Resultado de busqueda</h1>
+<h1 class="mx-auto my-0 text-uppercase">Listado de galletitas en inventario</h1>
 {% endblock %}
 
 
@@ -15,11 +14,9 @@
 
 {% block espacio_formulario %}
 
-    {% for producto in productos %}
+    {% for item in galletitas %}
 
-    <h2 class="text-white-50">{{ producto.codigo }}</h2>
-    <h2 class="text-white-50">{{ producto.marca }}</h2>
-    <h2 class="text-white-50">{{ producto.tipo }}</h2>
+    <h2 class="text-center text-white-50">Codigo: {{ item.codigo }}, Marca: {{ item.marca }}, Tipo: {{ item.tipo }}, Precio: {{ item.precio }}, Cantidad: {{ item.cantidad }}</h2>
     <h2 class="text-white-50">--</h2>
 
     {% endfor %}

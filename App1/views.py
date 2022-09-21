@@ -93,3 +93,15 @@ def buscar(request):
         return render(request, "App1/resultadoBusqueda.html", {"productos":bebidas})
     return render(request, "App1/formularioError.html")
 
+def listarLacteos(request):
+    lacteos=Lacteos.objects.all()
+    return render(request, "App1/listarLacteos.html", {"lacteos":lacteos})
+
+def listarGalletitas(request):
+    galletitas=Galletitas.objects.all()
+    return render(request, "App1/listarGalletitas.html", {"lacteos":galletitas})
+
+def listarBebidas(request):
+    bebidas=Bebidas.objects.all()
+    return render(request, "App1/listarBebidas.html", {"lacteos":bebidas})
+

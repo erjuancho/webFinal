@@ -10,4 +10,8 @@ urlpatterns = [
     path('formularioProductoApi/', formularioProductoApi, name='formularioProductoApi'),
     path('busquedaProducto/', busquedaProducto, name='busquedaProducto'),
     path('buscar/', buscar, name='buscar'),
+    path('listarLacteos/', listarLacteos, name='listarLacteos'),
+    path('listarGalletitas/', listarGalletitas, name='listarGalletitas'),
+    path('listarBebidas/', listarBebidas, name='listarBebidas'),
+
 ]
