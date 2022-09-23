@@ -1,0 +1,19 @@
+django-admin startproject nombreProyecto
+python -m django startproject proyectoJuancho #para crear un proyecto
+python manage.py migrate #para inicializar la base de datos
+python manage.py makemigrations
+python manage.py startapp App1 
+python manage.py runserver
+
+git config --list
+git remote add orign "url repo en github"
+git push origin main
+
+##Create New Branch
+git checkout -b [name_of_your_new_branch]
+git push origin feature/entregafinal
+
+playground avanzado parte 1 57:00
+
+Users:  admin   - Azsxdc1236*
+        juancho - Azsxdc1236*
