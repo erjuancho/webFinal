@@ -142,15 +142,16 @@ def editarLacteos(request, codigo):
         form=FormularioProductoApi(request.POST)
         if form.is_valid():
             info=form.cleaned_data
-            producto.codigo["codigo"]
-            producto.marca["marca"]
-            producto.tipo["tipo"]
-            producto.cantidad["cantidad"]
+            producto.codigo=info["codigo"]
+            producto.marca=info["marca"]
+            producto.tipo=info["tipo"]
+            producto.precio=info["precio"]
+            producto.cantidad=info["cantidad"]
             producto.save()
             lacteos=Lacteos.objects.all()
             return render(request, "App1/listarLacteos.html", {"lacteos":lacteos})
     else:
-        form=FormularioProductoApi(initial={"codigo":producto.codigo, "marca":producto.marca, "tipo":producto.tipo, "cantidad":producto.cantidad})
+        form=FormularioProductoApi(initial={"codigo":producto.codigo, "marca":producto.marca, "tipo":producto.tipo, "precio":producto.precio , "cantidad":producto.cantidad})
         return render(request, "App1/editarLacteos.html", {"formulario":form, "codigo_producto":producto.codigo })
 
 
