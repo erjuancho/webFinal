@@ -14,6 +14,7 @@ urlpatterns = [
     path('listarGalletitas/', listarGalletitas, name='listarGalletitas'),
     path('listarBebidas/', listarBebidas, name='listarBebidas'),
     path('eliminarLacteos/<codigo>', eliminarLacteos, name='eliminarLacteos'),
+    path('editarLacteos/<codigo>', editarLacteos, name='editarLacteos'),
     path('eliminarGalletitas/<codigo>', eliminarGalletitas, name='eliminarGalletitas'),
     path('eliminarBebidas/<codigo>', eliminarBebidas, name='eliminarBebidas'),
 ]

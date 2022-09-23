@@ -1,0 +1,30 @@
+{% extends "App1/padre.html" %}
+
+{% load static %}
+
+{% block titulo_de_pagina %}
+<h1 class="mx-auto my-0 text-uppercase">Editar lacteos</h1>
+{% endblock %}
+
+
+{% block subtitulo_de_pagina %}
+<h2>{{ mensaje }}</h2>
+<h2 class="text-white-50 mx-auto mt-2 mb-5">Editando campos del producto con codigo {{ codigo_producto }}</h2>
+{% endblock %}
+
+{% block espacio_formulario %}
+<h2 class="text-white-50 mx-auto mt-2 mb-5">
+    <form action="{% url 'editarLacteos' codigo_producto %}", method="POST">{% csrf_token %}
+        <div class="d-flex justify-content-center">
+            <div class="text-center">
+                <table>
+
+                    {{ formulario.as_table }}
+
+                </table>
+            </div>
+        </div>    
+        <input type="submit" name="Enviar">
+</h2>
+{% endblock %}
+
