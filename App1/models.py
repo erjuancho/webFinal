@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Lacteos(models.Model):
-    codigo=models.IntegerField()
+    codigo=models.IntegerField(primary_key=True)
     marca=models.CharField(max_length=50)
     tipo=models.CharField(max_length=50)
     precio=models.IntegerField()
@@ -14,7 +14,7 @@ class Lacteos(models.Model):
         return str(self.codigo)+" "+self.marca+" "+self.tipo+" "+str(self.cantidad)
 
 class Galletitas(models.Model):
-    codigo=models.IntegerField()
+    codigo=models.IntegerField(primary_key=True)
     marca=models.CharField(max_length=50)
     tipo=models.CharField(max_length=50)
     precio=models.IntegerField()
@@ -25,7 +25,7 @@ class Galletitas(models.Model):
 
 
 class Bebidas(models.Model):
-    codigo=models.IntegerField()
+    codigo=models.IntegerField(primary_key=True)
     marca=models.CharField(max_length=50)
     tipo=models.CharField(max_length=50)
     precio=models.IntegerField()

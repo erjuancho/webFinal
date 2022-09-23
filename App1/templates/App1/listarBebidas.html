@@ -17,6 +17,7 @@
     {% for item in bebidas %}
 
     <h2 class="text-center text-white-50">Codigo: {{ item.codigo }}, Marca: {{ item.marca }}, Tipo: {{ item.tipo }}, Precio: {{ item.precio }}, Cantidad: {{ item.cantidad }}</h2>
+    <a class="btn btn-primary" href="{% url 'eliminarBebidas' item.codigo %}">Eliminar producto</a>
     <h2 class="text-white-50">--</h2>
 
     {% endfor %}

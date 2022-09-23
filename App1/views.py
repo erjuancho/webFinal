@@ -21,7 +21,7 @@ def iniciogalletitas(request):
 def iniciobebidas(request):
     return render(request,"App1/bebidas.html")
 
-
+'''
 def formularioProducto(request):
 
     if request.method=="POST":
@@ -44,6 +44,7 @@ def formularioProducto(request):
             return render(request, "App1/formularioExito.html")
         return render(request, "App1/formularioError.html")
     return render(request, "App1/formularioProducto.html")
+'''
 
 
 def formularioProductoApi(request):
@@ -58,9 +59,13 @@ def formularioProductoApi(request):
             precio=data.get("precio")
             cantidad=data.get("cantidad")
             if int(str(codigo)[:1])==1:
-                producto=Lacteos(codigo=codigo, marca=marca , tipo=tipo, precio=precio, cantidad=cantidad)
-                producto.save()
-                return render(request, "App1/formularioExito.html")
+                lista=Lacteos.objects.filter(codigo=codigo)
+                if len(lista) != 0:
+                    return render(request, "App1/formularioErrorExiste.html")
+                else:
+                    producto=Lacteos(codigo=codigo, marca=marca , tipo=tipo, precio=precio, cantidad=cantidad)
+                    producto.save()
+                    return render(request, "App1/formularioExito.html")
             if int(str(codigo)[:1])==2:
                 producto=Galletitas(codigo=codigo, marca=marca , tipo=tipo, precio=precio, cantidad=cantidad)
                 producto.save()
@@ -99,9 +104,47 @@ def listarLacteos(request):
 
 def listarGalletitas(request):
     galletitas=Galletitas.objects.all()
-    return render(request, "App1/listarGalletitas.html", {"lacteos":galletitas})
+    return render(request, "App1/listarGalletitas.html", {"galletitas":galletitas})
 
 def listarBebidas(request):
     bebidas=Bebidas.objects.all()
-    return render(request, "App1/listarBebidas.html", {"lacteos":bebidas})
+    return render(request, "App1/listarBebidas.html", {"bebidas":bebidas})
+
+# def eliminarProducto(request, codigo):
+#     if int(str(codigo)[:1])==1:
+#         producto=Lacteos.object.get(codigo=codigo)
+#         producto.delete()
+#         lacteos=Lacteos.objects.all()
+#         return render(request, "App1/listarLacteos.html", {"lacteos":lacteos})
+#     if int(str(codigo)[:1])==2:
+#         producto=Galletitas.object.get(codigo=codigo)
+#         producto.delete()
+#         galletitas=Galletitas.objects.all()
+#         return render(request, "App1/listarGalletitas.html", {"galletitas":galletitas})
+#     if int(str(codigo)[:1])==3:
+#         producto=Bebidas.object.get(codigo=codigo)
+#         bebidas=Bebidas.objects.all()
+#         return render(request, "App1/listarBebidas.html", {"bebidas":bebidas})
+
+def eliminarLacteos(request, codigo):
+    producto=Lacteos.objects.get(codigo=codigo)
+    producto.delete()
+    lacteos=Lacteos.objects.all()
+    return render(request, "App1/listarLacteos.html", {"lacteos":lacteos})
+
+def eliminarGalletitas(request, codigo):
+    producto=Galletitas.objects.get(codigo=codigo)
+    producto.delete()
+    galletitas=Galletitas.objects.all()
+    return render(request, "App1/listarGalletitas.html", {"galletitas":galletitas})
+
+def eliminarBebidas(request, codigo):
+    producto=Bebidas.objects.get(codigo=codigo)
+    producto.delete()
+    bebidas=Bebidas.objects.all()
+    return render(request, "App1/listarBebidas.html", {"bebidas":bebidas})
+
+
+    
+
 
