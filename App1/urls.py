@@ -18,5 +18,5 @@ urlpatterns = [
     path('eliminarGalletitas/<codigo>', eliminarGalletitas, name='eliminarGalletitas'),
     path('eliminarBebidas/<codigo>', eliminarBebidas, name='eliminarBebidas'),
     path('login/', login_request, name='login'),
-
+    path('register/', register, name='register'),
 ]

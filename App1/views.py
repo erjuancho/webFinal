@@ -1,9 +1,10 @@
 from itertools import product
+from urllib import request
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Bebidas, Galletitas, Lacteos
 from django.template import Context, Template, loader
-from App1.forms import FormularioProductoApi
+from App1.forms import FormularioProductoApi, UserRegisterForm
 from django.views.generic import ListView
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -155,7 +156,7 @@ def editarLacteos(request, codigo):
 
 def login_request(request):
     if request.method=="POST":
-        form= AuthenticationForm(request, data=request.POST)
+        form=AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             usu=request.POST["username"]
             clave=request.POST["password"]
@@ -167,7 +168,18 @@ def login_request(request):
             else:
                 return render(request, 'App1/formularioLogin.html', {'form':form, 'mensaje':'Usuario o contraseña incorrectos'})
         else:
-            return render(request, 'App1/formularioLogin.html', {'form':form, 'mensaje':'Formulario invalido'})
+            return render(request, 'App1/formularioLogin.html', {'form':form, 'mensaje':'Usuario o contraseña incorrectos'})
     else:
         form=AuthenticationForm()
         return render (request, 'App1/formularioLogin.html', {'form':form})
+
+def register(request):
+    if request.method=="POST":
+        form=UserRegisterForm(request.POST)
+        if form.is_valid():
+            username=form.cleaned_data['username']
+            form.save()
+            return render(request, 'App1/inicio.html', {'mensaje':f'Usuario {username} creado'})
+    else:
+        form=UserRegisterForm()
+    return render(request, 'App1/formularioRegistro.html', {'form':form})

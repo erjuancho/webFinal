@@ -8,12 +8,11 @@
 
 
 {% block subtitulo_de_pagina %}
-<h2>{{ mensaje }}</h2>
 <h2 class="text-white-50 mx-auto mt-2 mb-5">Formulario para ingresar</h2>
 {% endblock %}
 
 {% block espacio_formulario %}
-<h1>{{ mensaje }}</h1>
+<h2>{{ mensaje }}</h2>
 <h2 class="text-white-50 mx-auto mt-2 mb-5">
     <form action="{% url 'login' %}", method="POST">{% csrf_token %}
         <div class="d-flex justify-content-center">
