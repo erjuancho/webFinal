@@ -5,8 +5,8 @@ from .models import Bebidas, Galletitas, Lacteos
 from django.template import Context, Template, loader
 from App1.forms import FormularioProductoApi
 from django.views.generic import ListView
-
-
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 # Create your views here.
 
@@ -46,7 +46,6 @@ def formularioProducto(request):
         return render(request, "App1/formularioError.html")
     return render(request, "App1/formularioProducto.html")
 '''
-
 
 def formularioProductoApi(request):
 
@@ -89,7 +88,6 @@ def formularioProductoApi(request):
     else:
          formulario=FormularioProductoApi()
          return render(request, "App1/formularioProductoApi.html", {"formulario": formulario})
-
 
 def busquedaProducto(request):
     return render(request, "App1/busquedaProducto.html")
@@ -155,12 +153,21 @@ def editarLacteos(request, codigo):
         form=FormularioProductoApi(initial={"codigo":producto.codigo, "marca":producto.marca, "tipo":producto.tipo, "precio":producto.precio , "cantidad":producto.cantidad})
         return render(request, "App1/editarLacteos.html", {"formulario":form, "codigo_producto":producto.codigo })
 
+def login_request(request):
+    if request.method=="POST":
+        form= AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            usu=request.POST["username"]
+            clave=request.POST["password"]
 
-
-    
-
-
-
-    
-
-
+            usuario=authenticate(username=usu, password=clave)
+            if usuario is not None:
+                login(request, usuario)
+                return render(request, 'App1/inicio.html', {'mensaje':f"bienvenido {usuario}"})
+            else:
+                return render(request, 'App1/formularioLogin.html', {'form':form, 'mensaje':'Usuario o contraseña incorrectos'})
+        else:
+            return render(request, 'App1/formularioLogin.html', {'form':form, 'mensaje':'Formulario invalido'})
+    else:
+        form=AuthenticationForm()
+        return render (request, 'App1/formularioLogin.html', {'form':form})

@@ -1,0 +1,32 @@
+{% extends "App1/padre.html" %}
+
+{% load static %}
+
+{% block titulo_de_pagina %}
+<h1 class="mx-auto my-0 text-uppercase">Iniciar Sesion</h1>
+{% endblock %}
+
+
+{% block subtitulo_de_pagina %}
+<h2>{{ mensaje }}</h2>
+<h2 class="text-white-50 mx-auto mt-2 mb-5">Formulario para ingresar</h2>
+{% endblock %}
+
+{% block espacio_formulario %}
+<h1>{{ mensaje }}</h1>
+<h2 class="text-white-50 mx-auto mt-2 mb-5">
+    <form action="{% url 'login' %}", method="POST">{% csrf_token %}
+        <div class="d-flex justify-content-center">
+            <div class="text-center">
+                <table>
+
+                    {{ form.as_p }}
+
+                </table>
+            </div>
+        </div>    
+        <input type="submit" value="Iniciar sesion">
+    </form>
+</h2>
+{% endblock %}
+
