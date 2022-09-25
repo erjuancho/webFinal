@@ -1,0 +1,27 @@
+{% extends "App1/padre.html" %}
+
+{% load static %}
+
+{% block titulo_de_pagina %}
+<h1 class="mx-auto my-0 text-uppercase">Edición del perfil de {{ usuario }}</h1>
+{% endblock %}
+
+
+{% block subtitulo_de_pagina %}
+<h2 class="text-white-50 mx-auto mt-2 mb-5">Formulario para editar usuario</h2>
+{% endblock %}
+
+{% block espacio_formulario %}
+<h2>{{ mensaje }}</h2>
+<h2 class="text-white-50 mx-auto mt-2 mb-5">
+    <form action="{% url 'editarPerfil' %}", method="POST">{% csrf_token %}
+                <table>
+
+                    {{ form.as_p }}
+
+                </table>
+        <input type="submit" value="Guardar cambios">
+    </form>
+</h2>
+{% endblock %}
+

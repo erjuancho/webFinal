@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Bebidas, Galletitas, Lacteos
 from django.template import Context, Template, loader
-from App1.forms import FormularioProductoApi, UserRegisterForm
+from App1.forms import FormularioProductoApi, UserRegisterForm, UserEditForm
 from django.views.generic import ListView
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -190,3 +190,19 @@ def register(request):
     else:
         form=UserRegisterForm()
     return render(request, 'App1/formularioRegistro.html', {'form':form})
+
+@login_required
+def editarPerfil(request):
+    usuario=request.user
+    if request.method=="POST":
+        form= UserEditForm(request.POST, instance=usuario)
+        if form.is_valid():
+            info=form.cleaned_data
+            usuario.email=info["email"]
+            usuario.password1=info["password1"]
+            usuario.password2=info["password2"]
+            usuario.save()
+            return render(request, 'App1/inicio.html', {'mensaje':f"Perfil de {usuario} editado"})
+    else:
+        form= UserEditForm(instance=usuario)
+    return render(request, 'App1/editarPerfil.html', {'form':form, 'usuario':usuario})

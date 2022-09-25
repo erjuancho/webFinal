@@ -13,7 +13,7 @@ git push origin main
 git checkout -b [name_of_your_new_branch]
 git push origin feature/entregafinal
 
-playground avanzado parte 2 54:17
+playground avanzado 
 
 Users:  admin   - Azsxdc1236*
         juancho - Azsxdc1236*
