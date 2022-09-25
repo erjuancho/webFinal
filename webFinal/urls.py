@@ -16,8 +16,10 @@ Including another URLconf
 from xml.etree.ElementInclude import include
 from django.contrib import admin
 from django.urls import path, include
+from App1.urls import login_request 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login/', login_request, name='login'),
     path('App1/', include('App1.urls'))
 ]

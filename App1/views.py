@@ -8,6 +8,9 @@ from App1.forms import FormularioProductoApi, UserRegisterForm
 from django.views.generic import ListView
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+#@login_required
 
 # Create your views here.
 
@@ -118,24 +121,28 @@ def listarBebidas(request):
     bebidas=Bebidas.objects.all()
     return render(request, "App1/listarBebidas.html", {"bebidas":bebidas})
 
+@login_required
 def eliminarLacteos(request, codigo):
     producto=Lacteos.objects.get(codigo=codigo)
     producto.delete()
     lacteos=Lacteos.objects.all()
     return render(request, "App1/listarLacteos.html", {"lacteos":lacteos})
 
+@login_required
 def eliminarGalletitas(request, codigo):
     producto=Galletitas.objects.get(codigo=codigo)
     producto.delete()
     galletitas=Galletitas.objects.all()
     return render(request, "App1/listarGalletitas.html", {"galletitas":galletitas})
 
+@login_required
 def eliminarBebidas(request, codigo):
     producto=Bebidas.objects.get(codigo=codigo)
     producto.delete()
     bebidas=Bebidas.objects.all()
     return render(request, "App1/listarBebidas.html", {"bebidas":bebidas})
 
+@login_required
 def editarLacteos(request, codigo):
     producto=Lacteos.objects.get(codigo=codigo)
     if request.method=="POST":
